@@ -42,13 +42,13 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		// DB 저장된 아이디랑 비밀번호 읽어오기
-		// 마지막에 저장된 아이디랑 비번만 읽어오는듯;
 		
 		 System.out.println("id = " +  id + " , Userid = " + dao.getId(id));
 		 System.out.println("pw = " + pw + " , Password = " + dao.getPw(pw));
 		
 		 
 		 
+		 // 처음 DB에 들어간 값만 읽어옴(?)
 		if(id.equals(dao.getId(id)) && pw.equals(dao.getPw(pw))) {
 			System.out.println("id 세션을 생성(만료 시간은 자유롭게 설정)"); 	
 			session.setAttribute("userid", id);;  	
