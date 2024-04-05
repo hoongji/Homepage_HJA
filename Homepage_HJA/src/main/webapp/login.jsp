@@ -18,13 +18,14 @@
 	<form action="loginAuth.do" method="post">
 	
 	
-	<label for="userid">사용자 ID:</label>
-    <input type="text" id="userid" name="userid"><br>
-    
-    <label for="password">비밀번호:</label>
-    <input type="password" id="password" name="password"><br><br>
-    
-	<input type="submit" value="제출"><br>
+		<label for="userid">사용자 ID:</label>
+	    <input type="text" id="userid" name="userid" required="required"><br>
+	    
+	    <label for="password">비밀번호:</label>
+	    <input type="password" id="password" name="password" required="required"><br><br>
+	    
+		<input type="submit" value="로그인"><br>
+		
 	</form>
 	
 </body>

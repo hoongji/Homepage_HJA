@@ -15,17 +15,19 @@
 	%>
 	
 	<!-- 회원정보 보기 / 로그아웃 
-		location.href로 이동하면 servlet에서 doGet()을 호출
+		location.href로 이동하면 servlet에서 doGet()을 호출 
 		ㄴ GET방식으로 동작
 	-->
 	<% 
-	String userId = (String)session.getAttribute("userId");
-	// 제대로 전달이 안됨!
+	String userid = (String)session.getAttribute("userid");
+	// LoginSevlet 에서 session이 안만들어졌고, GET 방식을 사용하지 않아서 null 값이 나온거였음.
+	// 1. loginServlet에서 세션이 만들어지지 않아서 
+	// 2. id 가 제대로 있는 지 없는 지 filter로 
 	%>
 	
-	<h2><%=userId%>님, 환영합니다. </h2><br>
+	<h2><%=userid%>님, 환영합니다. </h2><br>
 	
-	<button onclick="location.href='select.do'">회원정보</button>
+	<button onclick="location.href='select.do'">회원정보</button> 
 	<button onclick="location.href='logout.do'">로그아웃</button>
 	
 </body>

@@ -1,6 +1,7 @@
 package edu.web.member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -29,36 +30,44 @@ public class LoginServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.sendRedirect("login.jsp"); //얘 용도가 지금 servlet에 있는 데이터(여기서는 사용자 Id = confirmUserid)를 
+											//login.jsp로 보낸 것??
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(); // 세션 가져오기
 		
-		System.out.println("login.jsp 에서 id,pw 읽어오기");
-		String  id = request.getParameter("userid");
-		String  pw = request.getParameter("password");
+		String  userid = request.getParameter("userid");
+		String  password = request.getParameter("password");
 		
+		String confirmUserid = dao.select(userid, password);
+		System.out.println(confirmUserid);
 		
-		// DB 저장된 아이디랑 비밀번호 읽어오기
-		
-		 System.out.println("id = " +  id + " , Userid = " + dao.getId(id));
-		 System.out.println("pw = " + pw + " , Password = " + dao.getPw(pw));
-		
+		PrintWriter out = response.getWriter();
+		if(confirmUserid != null) { // DB에 아이디, 비밀번호가 있다면
+			session.setAttribute("userid", confirmUserid); 	
+			session.setMaxInactiveInterval(60); // 60초
+			out.print("<script>alert('로그인 성공');</script>");
+			out.print("<script>location.href='loginResult.jsp';</script>");
+			
+		}else {
+			out.print("<script>alert('아이디, 비밀번호를 확인하세요.');</script>");
+			out.print("<script>location.href='login.jsp';</script>");
+		}
 		 
 		 
 		 // 처음 DB에 들어간 값만 읽어옴(?)
-		if(id.equals(dao.getId(id)) && pw.equals(dao.getPw(pw))) {
+		/*if(userid.equals(dao.getId(userid)) && password.equals(dao.getPw(password))) {
 			System.out.println("id 세션을 생성(만료 시간은 자유롭게 설정)"); 	
-			session.setAttribute("userid", id);;  	
+			session.setAttribute("userid", userid); 	
 			session.setMaxInactiveInterval(60); // 60초
 			response.sendRedirect("/Homepage_HJA/loginResult.jsp");
 			
 		}else {
 			System.out.println("로그인 실패!");
 			response.sendRedirect("/Homepage_HJA/login.jsp");
-		}
+		}*/
 		
 	}
 

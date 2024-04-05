@@ -15,10 +15,10 @@
 	<form action="register.do" method="post">
 	
 	<label for="userid">사용자 ID:</label>
-    <input type="text" id="userid" name="userid"><br>
+    <input type="text" id="userid" name="userid" required="required"><br>
     
     <label for="password">비밀번호:</label>
-    <input type="password" id="password" name="password"><br>
+    <input type="password" id="password" name="password" required="required"><br>
     
     <label for="email">이메일:</label>
     <input type="email" id="email" name="email"><br>
