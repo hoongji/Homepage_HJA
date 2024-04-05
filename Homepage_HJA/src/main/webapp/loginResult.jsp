@@ -20,6 +20,7 @@
 	-->
 	<% 
 	String userId = (String)session.getAttribute("userId");
+	// 제대로 전달이 안됨!
 	%>
 	
 	<h2><%=userId%>님, 환영합니다. </h2><br>

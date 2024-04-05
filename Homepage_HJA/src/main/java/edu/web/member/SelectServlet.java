@@ -27,6 +27,8 @@ public class SelectServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<MemberVO> list = dao.select(); // 로그인된 사용자의 정보를 DB에서 select
+		
+		// MemberVO 불러와서 
 		request.setAttribute("list",list);
 		request.getRequestDispatcher("/memberResult.jsp"); // memberResult.jsp로 전송
 	}
